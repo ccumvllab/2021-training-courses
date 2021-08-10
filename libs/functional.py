@@ -5,9 +5,9 @@ import numpy as np
 
 class Variable:
 
-    def __init__(self, value=None):
+    def __init__(self, value=None, grad=None):
         self.value = value
-        self.grad = None
+        self.grad = grad
 
 
 class Polynomial:
