@@ -1,4 +1,4 @@
-# 2021-training-courses
+# 2021 Training Courses
 
 ## Q1
 
@@ -36,8 +36,8 @@ import numpy as np
 class Variable:
 
    def __init__(self, value=None):
-        self.value = value
-        self.grad = None
+      self.value = value
+      self.grad = None
 
 
 class Polynomial:
