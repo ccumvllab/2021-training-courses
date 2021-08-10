@@ -1,10 +1,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+plt.rcParams.update({
+    'text.usetex': True,
+    'font.family': 'serif',
+    'font.serif': ['Times New Roman'],
+    'figure.dpi': 150,
+})
 
-def plot_polynomial(file, function, p_x, x=None):
+
+def plot_polynomial(file, function, p_x, x=None, formula=None):
     if x is None:
         raise TypeError('Expected `x = np.linspace(...)` must be passed.')
+
+    if formula is None:
+        raise TypeError('Expected `formula = "..."` must be passed.')
 
     y = function(x)
     p_y = function(p_x)
@@ -14,5 +24,5 @@ def plot_polynomial(file, function, p_x, x=None):
     fig, ax = plt.subplots()
     ax.plot(x, y.value)
     ax.plot(x, y_tangent)
-    ax.legend(['f(x)', 'the tangent at the point p'])
+    ax.legend([rf'$f(x) = {formula}$', rf'the tangent at the point $p = {p_x}$'])
     fig.savefig(file)
