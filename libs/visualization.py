@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+plt.style.use('seaborn-bright')
 plt.rcParams.update({
     'text.usetex': True,
     'font.family': 'serif',
