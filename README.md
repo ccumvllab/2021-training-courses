@@ -135,3 +135,11 @@ class TestPlotPolynomial:
       plot_polynomial(file=file, function=f, p_x=-1., x=x, formula='4 + x + 3x^2 + 1.2x^3')
       assert file.exists()
 ```
+
+`test_plot_polynomial_1.png`:
+
+![](tests/test_plot_polynomial_1.png)
+
+`test_plot_polynomial_2.png`:
+
+![](tests/test_plot_polynomial_2.png)
