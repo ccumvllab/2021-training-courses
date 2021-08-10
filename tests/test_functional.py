@@ -13,3 +13,11 @@ class TestPolynomial:
         # gradient: <2 + 6x>
         assert f(4).grad == 26
         assert f(5).grad == 32
+        
+    def test_plot_polynomial(self):
+        f = Polynomial(a=[1, 2, 3])
+        assert f(4).grad == 26
+        assert f(4).value == 57
+        assert f(5).value == 86
+        assert f(5).grad == 32
+        assert plot_polynomial(7,a=[1, 2, 3])
