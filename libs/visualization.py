@@ -2,17 +2,17 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_polynomial(file, function, x, X=None):
-    if X is None:
-        raise TypeError('Expected `X = np.linspace(...)` must be passed.')
-
-    Y_f = function(X)
+def plot_polynomial(file, function, p_x, x=None):
+    if x is None:
+        raise TypeError('Expected `x = np.linspace(...)` must be passed.')
 
     y = function(x)
-    slope = y.grad
-    Y_tangent = slope * (X - x) + y.value
+    p_y = function(p_x)
+    slope = p_y.grad
+    y_tangent = slope * (x - p_x) + p_y.value
 
     fig, ax = plt.subplots()
-    ax.plot(X, Y_f.value)
-    ax.plot(X, Y_tangent)
+    ax.plot(x, y.value)
+    ax.plot(x, y_tangent)
+    ax.legend(['f(x)', 'the tangent at the point p'])
     fig.savefig(file)
