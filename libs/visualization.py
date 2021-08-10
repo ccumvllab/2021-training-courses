@@ -23,5 +23,6 @@ def plot_polynomial(file, function, p_x, x=None, formula=None):
     fig, ax = plt.subplots()
     ax.plot(x, y.value)
     ax.plot(x, y_tangent)
-    ax.legend([rf'$f(x) = {formula}$', rf'the tangent at the point $p = {p_x}$'])
+    ax.plot(p_x, p_y.value, 'o', markersize=3)
+    ax.legend([rf'$f(x) = {formula}$', rf'the tangent at the point $p = {p_x}$', r'the point $p$'])
     fig.savefig(file)
