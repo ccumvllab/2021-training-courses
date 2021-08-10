@@ -2,8 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def plot_polynomial(file, function, x):
-    X = np.linspace(0, 100)
+def plot_polynomial(file, function, x, X=None):
+    if X is None:
+        raise TypeError('Expected `X = np.linspace(...)` must be passed.')
+
     Y_f = function(X)
 
     y = function(x)
