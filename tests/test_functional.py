@@ -1,5 +1,7 @@
+import sys
+sys.path.append("..")
 from libs.functional import Polynomial
-
+from libs.visualization import plot_polynomial
 
 class TestPolynomial:
 
@@ -13,3 +15,8 @@ class TestPolynomial:
         # gradient: <2 + 6x>
         assert f(4).grad == 26
         assert f(5).grad == 32
+# 測試    
+test = TestPolynomial()     
+test.test_io()   
+test.test_grad()
+plot_polynomial([1,2,3],6)
