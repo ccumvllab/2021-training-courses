@@ -20,4 +20,4 @@ class TestPolynomial:
         assert f(4).value == 57
         assert f(5).value == 86
         assert f(5).grad == 32
-        assert plot_polynomial(7,a=[1, 2, 3])
+        plot_polynomial(7,a=[1, 2, 3])
