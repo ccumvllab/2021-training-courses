@@ -143,3 +143,98 @@ class TestPlotPolynomial:
 `test_plot_polynomial_2.png`:
 
 ![](tests/test_plot_polynomial_2.png)
+
+## Q2
+
+Deadline: 2021-08-20
+
+給定 data
+point <img src="https://render.githubusercontent.com/render/math?math=%24%5Clbrace%20(x_i%2C%20y_i)%20%5Crbrace_%7Bi%3D1%7D%5E%7BN%7D%24">
+，利用 SGD 解出 linear regression.
+
+1. Linear
+   regression: <img src="https://render.githubusercontent.com/render/math?math=%24%5Chat%7By%7D%20%3D%20mx%20%2B%20b%24">
+2. 隨機初始化 <img src="https://render.githubusercontent.com/render/math?math=%24m%2C%20b%24">
+3. 計算 MSE
+   Loss: <img src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%7B(%5Chat%7By%7D%20-%20y)%5E2%7D">
+4. 計算參數的 gradients:
+    - <img src="https://render.githubusercontent.com/render/math?math=%5Cnabla_%7Bm%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B2%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%7B2m(mx%2Bb%20-%20y)%7D">
+    - <img src="https://render.githubusercontent.com/render/math?math=%5Cnabla_%7Bb%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B2%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%7B(mx%2Bb%20-%20y)%7D">
+5. 更新參數
+
+### Prototype
+
+In `libs/functional.py`:
+
+```python
+from typing import Tuple
+
+import numpy as np
+
+
+def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate) -> Tuple[np.ndarray, np.ndarray]:
+    pass
+```
+
+In `libs/visualization.py`:
+
+```python
+def plot_regression(file, x, y, prediction, groundtruth):
+    pass
+```
+
+### Test Cases
+
+In `tests/test_functional.py`:
+
+```python
+import numpy as np
+
+from libs.functional import regression_sgd
+
+
+def test_regression_solved_correctly():
+    m_gt, b_gt = 2.4, 1.0
+    num_samples = 100
+    x = np.random.uniform(-10, 10, num_samples)
+    noise = np.random.normal(0, 1, num_samples)
+    y = m_gt * x + b_gt + noise
+    num_iterations = 1000
+    batch_size = 10
+    learning_rate = 0.001
+
+    m, b = regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate)
+
+    assert m.shape == (num_iterations + 1,) and b.shape == (num_iterations + 1,)
+    assert np.isclose(m[-1], m_gt, 1e-01)
+```
+
+In `tests/visualization.py`:
+
+```python
+from pathlib import Path
+
+import numpy as np
+
+from libs.functional import regression_sgd
+from libs.visualization import plot_regression
+
+
+def test_plot_regression():
+    m_gt, b_gt = 2.4, 1.0
+    num_samples = 100
+    x = np.random.uniform(-10, 10, num_samples)
+    noise = np.random.normal(0, 1, num_samples)
+    y = m_gt * x + b_gt + noise
+    num_iterations = 1000
+    batch_size = 10
+    learning_rate = 0.001
+
+    m, b = regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate)
+    file = Path('test_plot_regression.png')
+    plot_regression(file, x, y, prediction=(m, b), groundtruth=(m_gt, b_gt))
+
+    assert file.exists()
+```
+
+![](tests/test_plot_regression.png)
