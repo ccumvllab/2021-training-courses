@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Tuple
 
 import numpy as np
 
@@ -17,3 +17,7 @@ class Polynomial:
 
     def __call__(self, x: Union[float, int]) -> Variable:
         pass
+
+
+def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate) -> Tuple[np.ndarray, np.ndarray]:
+    pass
