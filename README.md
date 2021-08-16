@@ -1,5 +1,22 @@
 # 2021 Training Courses
 
+Table of Contents
+
+- [2021 Training Courses](#2021-training-courses)
+  * [Packages](#packages)
+  * [Q1](#q1)
+    + [Prototype](#prototype)
+    + [Test Cases](#test-cases)
+  * [Q2](#q2)
+    + [Prototype](#prototype-1)
+    + [Test Cases](#test-cases-1)
+   
+## Packages
+
+- NumPy
+- Matplotlib
+- pytest
+
 ## Q1
 
 Deadline: 2021-08-13
@@ -17,11 +34,6 @@ Deadline: 2021-08-13
         - `x`: 圖表的 x 軸
         - `formula`: 數學式描述
 
-### Packages
-
-- NumPy
-- Matplotlib
-- pytest
 
 ### Prototype
 
