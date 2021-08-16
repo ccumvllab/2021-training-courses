@@ -149,18 +149,19 @@ class TestPlotPolynomial:
 Deadline: 2021-08-20
 
 給定 data
-point <img src="https://render.githubusercontent.com/render/math?math=%24%5Clbrace%20(x_i%2C%20y_i)%20%5Crbrace_%7Bi%3D1%7D%5E%7BN%7D%24">
+points ![](https://latex.codecogs.com/gif.latex?%5C%7B%28x_i%2C%20y_i%29%5C%7D_%7Bi%3D1%7D%5E%7BN%7D)
 ，利用 SGD 解出 linear regression.
 
 1. Linear
-   regression: <img src="https://render.githubusercontent.com/render/math?math=%24%5Chat%7By%7D%20%3D%20mx%20%2B%20b%24">
-2. 隨機初始化 <img src="https://render.githubusercontent.com/render/math?math=%24m%2C%20b%24">
+   regression model: ![](https://latex.codecogs.com/gif.latex?%5Chat%7By%7D%20%3D%20mx%20&plus;%20b)
+2. 隨機初始化 ![](https://latex.codecogs.com/gif.latex?m%2C%20b)
 3. 計算 MSE
-   Loss: <img src="https://render.githubusercontent.com/render/math?math=%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%7B(%5Chat%7By%7D%20-%20y)%5E2%7D">
+   Loss: \
+   ![](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign*%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%26%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%7B%5Cleft%20%28%20%5Chat%7By%7D%20-%20y%20%5Cright%20%29%5E2%7D%20%5C%5C%20%26%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%7B%5Cleft%20%28%20mx%20&plus;%20b%20-%20y%20%5Cright%20%29%5E2%7D%20%5C%5C%20%5Cend%7Balign*%7D)
 4. 計算參數的 gradients:
-    - <img src="https://render.githubusercontent.com/render/math?math=%5Cnabla_%7Bm%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B2%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%7B2m(mx%2Bb%20-%20y)%7D">
-    - <img src="https://render.githubusercontent.com/render/math?math=%5Cnabla_%7Bb%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B2%7D%7BN%7D%20%5Csum_%7Bi%3D1%7D%5E%7BN%7D%7B(mx%2Bb%20-%20y)%7D">
-5. 更新參數
+    - ![](https://latex.codecogs.com/gif.latex?%5Cnabla_%7Bm%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%7B2x%20%5Cleft%20%28%20mx%20&plus;%20b%20-%20y%20%5Cright%20%29%7D)
+    - ![](https://latex.codecogs.com/gif.latex?%5Cnabla_%7Bb%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%7B2%20%5Cleft%20%28%20mx%20&plus;%20b%20-%20y%20%5Cright%20%29%7D)
+5. 利用 SGD 更新參數
 
 ### Prototype
 
