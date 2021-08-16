@@ -149,18 +149,18 @@ class TestPlotPolynomial:
 Deadline: 2021-08-20
 
 給定 data
-points ![](https://latex.codecogs.com/gif.latex?%5C%7B%28x_i%2C%20y_i%29%5C%7D_%7Bi%3D1%7D%5E%7BN%7D)
+points ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%5Cbg_white%20%5Cleft%20%5C%7B%20%5Cleft%20%28%20x_i%2C%20y_i%20%5Cright%20%29%20%5Cright%20%5C%7D_%7Bi%3D1%7D%5E%7BN%7D)
 ，利用 SGD 解出 linear regression.
 
 1. Linear
-   regression model: ![](https://latex.codecogs.com/gif.latex?%5Chat%7By%7D%20%3D%20mx%20&plus;%20b)
-2. 隨機初始化 ![](https://latex.codecogs.com/gif.latex?m%2C%20b)
+   regression model: ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%5Cbg_white%20%5Chat%7By%7D%20%3D%20mx%20&plus;%20b)
+2. 隨機初始化 ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%5Cbg_white%20m%2C%20b)
 3. 計算 MSE
    Loss: \
-   ![](https://latex.codecogs.com/gif.latex?%5Cbegin%7Balign*%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%26%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%7B%5Cleft%20%28%20%5Chat%7By%7D%20-%20y%20%5Cright%20%29%5E2%7D%20%5C%5C%20%26%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%7B%5Cleft%20%28%20mx%20&plus;%20b%20-%20y%20%5Cright%20%29%5E2%7D%20%5C%5C%20%5Cend%7Balign*%7D)
+   ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%5Cbg_white%20%5Cbegin%7Balign*%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%26%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%28%5Chat%7By%7D%20-%20y%29%5E2%5C%5C%20%26%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%28mx%20&plus;%20b%20-%20y%29%5E2%20%5Cend%7Balign*%7D)
 4. 計算參數的 gradients:
-    - ![](https://latex.codecogs.com/gif.latex?%5Cnabla_%7Bm%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%7B2x%20%5Cleft%20%28%20mx%20&plus;%20b%20-%20y%20%5Cright%20%29%7D)
-    - ![](https://latex.codecogs.com/gif.latex?%5Cnabla_%7Bb%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%7B2%20%5Cleft%20%28%20mx%20&plus;%20b%20-%20y%20%5Cright%20%29%7D)
+    - ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%5Cbg_white%20%5Cnabla_%7Bm%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%202x%28mx%20&plus;%20b%20-%20y%29)
+    - ![](https://latex.codecogs.com/svg.latex?%5Cinline%20%5Cbg_white%20%5Cnabla_%7Bb%7D%20%5Cmathcal%7BL%7D_%7BMSE%7D%20%3D%20%5Cfrac%7B1%7D%7BN%7D%20%5Csum_%7Bi%7D%5E%7BN%7D%202%28mx%20&plus;%20b%20-%20y%29)
 5. 利用 SGD 更新參數
 
 ### Prototype
