@@ -31,19 +31,16 @@ class Polynomial:
 
 
 def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate) -> Tuple[np.ndarray, np.ndarray]:
-    idx = np.arange(num_samples)
-    np.random.shuffle(idx)
-
+    indices = np.random.randint(0, num_samples, size=(num_iterations, batch_size))
     m = np.zeros(num_iterations + 1)
     b = np.zeros(num_iterations + 1)
-
     m[0] = np.random.normal()
     b[0] = np.random.normal()
 
     for i in range(num_iterations):
-        j = slice(i * batch_size % num_samples, (i + 1) * batch_size % num_samples)
-        x_in_batch = x[j]
-        y_in_batch = y[j]
+        batch_idx = indices[i]
+        x_in_batch = x[batch_idx]
+        y_in_batch = y[batch_idx]
 
         # Compute the gradients
         m_grad = np.sum(2 * x_in_batch * (m[i] * x_in_batch + b[i] - y_in_batch)) / num_samples
