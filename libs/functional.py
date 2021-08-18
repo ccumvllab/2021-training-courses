@@ -32,9 +32,24 @@ def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate)
         batch_y = y[sample_label]
         m[i+1] = m[i]
         b[i+1] = b[i]
-        #GD
+
+        # Mini-batch stochastic gradient descent
+        # 計算這個batch中的單一sample之 loss function -> 藉由這個loss計算gradient -> 更新參數 -> next sample in bacth
+        # 直到這個batch中的每個sample都更新過參數 -> next iteration
+        '''
         for j in range(batch_size):
             m[i+1] -= learning_rate*batch_x[j]*(m[i+1]*batch_x[j]+-batch_y[j])/batch_size # 2x(mx+b-y)
             b[i+1] -= learning_rate*(m[i+1]*batch_x[j]+-batch_y[j])/batch_size #2(mx+b-y)
+        '''
+
+        # Stochastic mini-batch gradient descent
+        # 計算這個batch的loss function -> 藉由這個loss計算gradient -> 更新參數 -> next iteration
+        b_temp = np.full([1,100],b[i]) #建立一個1*100的一維陣列b[i]，方便y_hat的計算
+        y_hat = m[i] * x + b_temp
+        m_gt = np.sum(2 * x * (y_hat - y))/batch_size # m 的 gradient計算
+        b_gt = np.sum(2 * (y_hat - y))/batch_size # b 的 gradient計算
+        m[i+1] -= learning_rate * m_gt # update m gradient
+        b[i+1] -= learning_rate * b_gt # update b gradient
+
     return (m,b)
 
