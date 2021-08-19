@@ -1,33 +1,18 @@
-#pip3 install PyQt5==5.9.2
-
-import numpy, matplotlib
-from numpy.polynomial import Polynomial
 import matplotlib.pyplot as plt
 
-def plot_polynomial(polynomial_func,x_val): #adapt from stackoverflow
-    plt.figure(figsize=(8,4),dpi=150)
+def plot_polynomial(file, function, p_x, x=None, formula=""):
+    pass
 
-    #apply x to polynomial function
-    p = Polynomial(polynomial_func)
-    print(p)
-    d = (p.deriv())
-    print(d)
 
-    s1,s2 = p(x_val),d(x_val)
-    print(s1,s2)
-
-    window_size = 20
-
-    x = []
-    y = []
-    for i in numpy.arange((x_val-window_size),(x_val+window_size),0.1): #axes range on plot (when degree increase --> overflow/underflow)
-        x.append(i)
-        y.append(p(i))
-
-    y_s,y_e = (-window_size) * s2 + s1, (window_size)* s2 + s1
-
-    plt.plot([x_val-window_size,x_val+window_size],[y_s,y_e])
-    plt.plot(x,y)
-    plt.scatter(x_val,p(x_val), s=5, c='r')
+def plot_regression(file, x, y, prediction, groundtruth):
+    plt.figure(figsize=(8,6),dpi=150)
+    gt_poly = groundtruth[0]*x + groundtruth[1]
+    pd_poly = prediction[0][-1]*x + prediction[1][-1]
+    plt.scatter(x, y, s=15, c='lime', label='Data points', alpha=0.7, zorder=2)
+    plt.plot(x, pd_poly, c="blue", linewidth=1, label='Groundtruth', alpha=0.7, zorder=1)
+    plt.plot(x, gt_poly, c="red", linewidth=1, label='Prediction', alpha=0.7, zorder=3)
+    handles, labels = plt.gca().get_legend_handles_labels()
+    order = [1,2,0]
+    plt.legend([handles[idx] for idx in order],[labels[idx] for idx in order])
+    plt.savefig(file)
     plt.show()
-    plt.close()
