@@ -1,7 +1,8 @@
 from pathlib import Path
 
 import numpy as np
-
+import sys
+sys.path.append("..")
 from libs.functional import Polynomial, regression_sgd
 from libs.visualization import plot_polynomial, plot_regression
 
@@ -38,3 +39,4 @@ def test_plot_regression():
     plot_regression(file, x, y, prediction=(m, b), groundtruth=(m_gt, b_gt))
 
     assert file.exists()
+      

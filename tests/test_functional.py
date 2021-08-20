@@ -1,5 +1,6 @@
 import numpy as np
-
+import sys
+sys.path.append("..")
 from libs.functional import Polynomial, regression_sgd
 
 
