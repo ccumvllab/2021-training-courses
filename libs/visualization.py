@@ -1,6 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 
+
 def plot_polynomial(x_cut, a: List = None):
     f = Polynomial(a)
     x=np.linspace(x_cut-10 ,x_cut+10 ,1024) # x軸 (x_start, x_stop, y_tall)
@@ -13,9 +14,7 @@ def plot_polynomial(x_cut, a: List = None):
     plt.savefig('plot_polynomial.png') #在show之前要先save
     plt.show()   #show圖
 
-    
 def plot_regression(file, x, y, prediction, groundtruth):
-
     # Data 散佈圖
     plt.scatter(x, y, s=10, alpha=0.5, color='green', label='Data points')
     # Real Line

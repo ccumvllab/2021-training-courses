@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Tuple
 
 import numpy as np
 
@@ -16,6 +16,7 @@ class Polynomial:
         self.a = np.array(a)
 
     def __call__(self, x: Union[float, int]) -> Variable:
+
         f_value=0
         f_grad=0
         # 計算function
@@ -29,6 +30,7 @@ class Polynomial:
         # 計算結果儲存至Variable  
         function=Variable(f_value,f_grad)
         return function
+
 
 from typing import Tuple
 
@@ -44,8 +46,7 @@ def shuffle_data(x, y):
     X = training_data[0, :]
     Y = training_data[1, :]
     return X, Y
-
-
+  
 def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate) -> Tuple[np.ndarray, np.ndarray]:
     m, b = np.random.randn(), np.random.randn()  # 隨機初始化 m, b
     m_i, b_i = np.zeros(num_iterations + 1), np.zeros(num_iterations + 1)
@@ -78,3 +79,4 @@ def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate)
         m_i[i+1] = m
         b_i[i+1] = b
     return (m_i, b_i)
+
