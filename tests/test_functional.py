@@ -1,6 +1,7 @@
 import numpy as np
 
 from libs.functional import Polynomial, regression_sgd
+from tests.test_visualization import test_plot_regression
 
 
 class TestPolynomial:
@@ -37,3 +38,7 @@ def test_regression_solved_correctly():
 
     assert m.shape == (num_iterations + 1,) and b.shape == (num_iterations + 1,)
     assert np.isclose(m[-1], m_gt, 1e-01)
+
+if __name__ == '__main__':
+    test_regression_solved_correctly()
+    test_plot_regression()
