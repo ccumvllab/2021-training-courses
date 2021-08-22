@@ -43,8 +43,8 @@ def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate)
         y_in_batch = y[batch_idx]
 
         # Compute the gradients
-        m_grad = np.sum(2 * x_in_batch * (m[i] * x_in_batch + b[i] - y_in_batch)) / num_samples
-        b_grad = np.sum(2 * (m[i] * x_in_batch + b[i] - y_in_batch)) / num_samples
+        m_grad = np.mean(2 * x_in_batch * (m[i] * x_in_batch + b[i] - y_in_batch))
+        b_grad = np.mean(2 * (m[i] * x_in_batch + b[i] - y_in_batch))
 
         # Update m and b
         m[i + 1] = m[i] - learning_rate * m_grad
