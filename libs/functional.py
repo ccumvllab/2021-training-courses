@@ -55,15 +55,11 @@ def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate)
     m[0] = random.random()
     b[0] = random.random()
 
-    # split into batches
-    x = np.array_split(x, batch_size)
-    y = np.array_split(y, batch_size)
-
     for iteration in tqdm(range(num_iterations)):
 
-        # get batch
-        batch_num = random.randint(0, len(x)-1)
-        batch_x, batch_y = x[batch_num], y[batch_num]
+        # randomly select batch_size data
+        batch_index = random.sample(range(0, num_samples), batch_size)
+        batch_x, batch_y = x[batch_index], y[batch_index]
 
         # get gradient of m and b
         m_gradient = 1/num_samples * \
