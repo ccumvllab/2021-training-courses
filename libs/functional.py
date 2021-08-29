@@ -1,6 +1,8 @@
 from typing import List, Union, Tuple
 
 import numpy as np
+import random
+from tqdm import tqdm
 
 
 class Variable:
@@ -44,4 +46,34 @@ class Polynomial:
 
 
 def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate) -> Tuple[np.ndarray, np.ndarray]:
-    pass
+
+    # declare m and b
+    m = np.empty(num_iterations + 1, dtype=np.float64)
+    b = np.empty(num_iterations + 1, dtype=np.float64)
+
+    # init m and b
+    m[0] = random.random()
+    b[0] = random.random()
+
+    # split into batches
+    x = np.array_split(x, batch_size)
+    y = np.array_split(y, batch_size)
+
+    for iteration in tqdm(range(num_iterations)):
+        for batch, data in enumerate(x):
+
+            # get gradient of m and b
+            m_gradient = 1/num_samples * np.sum(
+                2*data*(m[iteration]*data+b[iteration]-y[batch])
+            )
+            b_gradient = 1/num_samples * np.sum(
+                2*(m[iteration]*data+b[iteration]-y[batch])
+            )
+
+            # update parameters by SGD
+            m[iteration+1] = m[iteration] - learning_rate * m_gradient
+            b[iteration+1] = b[iteration] - learning_rate * b_gradient
+
+    print(f"the final parameters: (m, b)=({m[-1]}, {b[-1]})")
+
+    return m, b
