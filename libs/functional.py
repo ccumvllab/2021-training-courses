@@ -60,19 +60,20 @@ def regression_sgd(x, y, num_samples, num_iterations, batch_size, learning_rate)
     y = np.array_split(y, batch_size)
 
     for iteration in tqdm(range(num_iterations)):
-        for batch, data in enumerate(x):
 
-            # get gradient of m and b
-            m_gradient = 1/num_samples * np.sum(
-                2*data*(m[iteration]*data+b[iteration]-y[batch])
-            )
-            b_gradient = 1/num_samples * np.sum(
-                2*(m[iteration]*data+b[iteration]-y[batch])
-            )
+        # get batch
+        batch_num = random.randint(0, len(x)-1)
+        batch_x, batch_y = x[batch_num], y[batch_num]
 
-            # update parameters by SGD
-            m[iteration+1] = m[iteration] - learning_rate * m_gradient
-            b[iteration+1] = b[iteration] - learning_rate * b_gradient
+        # get gradient of m and b
+        m_gradient = 1/num_samples * \
+            np.sum(2*batch_x*(m[iteration]*batch_x+b[iteration]-batch_y))
+        b_gradient = 1/num_samples * \
+            np.sum(2*(m[iteration]*batch_x+b[iteration]-batch_y))
+
+        # update parameters by SGD
+        m[iteration+1] = m[iteration] - learning_rate * m_gradient
+        b[iteration+1] = b[iteration] - learning_rate * b_gradient
 
     print(f"the final parameters: (m, b)=({m[-1]}, {b[-1]})")
 
