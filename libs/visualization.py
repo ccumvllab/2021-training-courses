@@ -28,6 +28,7 @@ def plot_polynomial(file, function, p_x, x=None, formula=None):
     ax.plot(p_x, p_y.value, 'o', markersize=3)
     ax.legend([rf'$f(x) = {formula}$', rf'the tangent at the point $p = {p_x}$', r'the point $p$'])
     fig.savefig(file)
+    plt.close(fig)
 
 
 def plot_regression(file, x, y, prediction, groundtruth):
@@ -44,3 +45,4 @@ def plot_regression(file, x, y, prediction, groundtruth):
     ax.plot(x_line, y_line_gt, alpha=0.7)
     ax.legend(['Prediction', 'Data points', 'Groundtruth'])
     fig.savefig(file)
+    plt.close(fig)
